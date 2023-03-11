@@ -19,6 +19,7 @@ code-block-font-size: \scriptsize
 **Verify hadoop installation for each member of the group**
 
 ### `20127011` **Le Tan Dat**
+![01-20127458](images/01-20127011.png)
 
 ### `20127458` **Dang Tien Dat** 
 ![01-20127458](images/01-20127458.png)
@@ -49,20 +50,23 @@ code-block-font-size: \scriptsize
     **Answer**: The introduction of a combiner function to the MapReduce model addresses the problem of excessive data shuffling and network traffic during the Reduce phase. The combiner function is used to reduce the amount of data that needs to be transferred between the Map and Reduce tasks in a MapReduce job. The combiner function is executed on the output of the Map task on each node before the data is transferred to the Reduce task. The combiner function is optional and is only used if it reduces the amount of data that needs to be transferred between the Map and Reduce tasks. 
 
 ## Running a warm-up problem: Word Count
+- **Step 1**: Create input1 file
 
-- **Step 1**: 
+![03-step1](images/03-01.png)
 
-![03-step1](images/03-1.png)
+- **Step 2**: Compile WordCount.java and create a jar
 
-- **Step 2**:
+![03-step1](images/03-02.png)
 
-![03-step2](images/03-2.png)
+- **Step 3**: Run the application
 
-![03-step2-1](images/03-3.png)
+![03-step2](images/03-03.png)
 
-- **Step 3**:
+![03-step2-1](images/03-04.png)
 
-![03-step3](images/03-4.png)
+- **Step 4**: Output file
+
+![03-step3](images/03-05.png)
 
 
 ## Bonus
@@ -90,7 +94,7 @@ This a section we will answer the following questions:
 
 1. **Is your Hadoop secured? Give a short explanation if your answer is yes. Otherwise, give some examples of risks to your system.**
 
-    **Answer**: Yes my Hadoop is secured. Because I have to use the password to access the Hadoop. If I don't use the password, I can't access the Hadoop. So, I think my Hadoop is secured.  Encryption protects the data stored in Hadoop by making it unreadable to anyone who does not have the decryption key.
+    **Answer**: Encryption protects the data stored in Hadoop by making it unreadable to anyone who does not have the decryption key.
 
     Some examples of risks to a Hadoop system include:
     - Unauthorized access: If a Hadoop system is not properly secured, it can be accessed by unauthorized users who can steal, modify, or delete data.
@@ -100,11 +104,14 @@ This a section we will answer the following questions:
     - Malware and viruses: Hadoop systems can be vulnerable to malware and viruses that can infect the system and compromise its security.
 
     - Insider threats: Insiders with access to Hadoop systems can intentionally or unintentionally cause harm to the system by stealing or modifying data, or by introducing malware or viruses.
+
+    To prevent these risks, Hadoop administrators should implement security measures such as access controls, encryption, and security monitoring.
     
 2. **From your perspective, which method is better when securing your HDFS: authentication, authorization, or encryption? Give an explanation about your choices.**
 
     **Answer**: I think the authentication is better than authorization and encryption. Because the authentication is the first step to access the Hadoop. If I don't have the authentication, I can't access the Hadoop. So, I think the authentication is better than authorization and encryption.
     From my perspective, it is not possible to say that one method is better than the other when securing HDFS, as all three methods play important and complementary roles in overall Hadoop security.
+
     Authentication is the process of verifying the identity of a user or application attempting to access the HDFS. Authentication ensures that only authorized users can access the system, and helps prevent unauthorized access and data breaches. Authorization ensures that users can only access the data and resources that they are authorized to use, and helps prevent unauthorized access and data breaches. Without proper authorization, users may be able to access data or resources that they should not have access to, leading to security vulnerabilities.
 
     Encryption is the process of converting data into a format that is unreadable to unauthorized users. Encryption ensures that data is protected, even if it is accessed by unauthorized users. Encryption is especially important for sensitive data that needs to be protected at rest or in transit.
@@ -113,32 +120,59 @@ This a section we will answer the following questions:
 
 Insert table example:
 
-Server IP Address | Ports Open
-------------------|----------------------------------------
-192.168.1.1       | **TCP**: 21,22,25,80,443
-192.168.1.2       | **TCP**: 22,55,90,8080,80
-192.168.1.3       | **TCP**: 1433,3389\
-**UDP**: 1434,161
+> Thang - 20127627 Docker Virtual Machine
 
-Code example:
+|     Server IP Address      |           Ports Open            |
+| -------------------------- | ------------------------------- |
+| 172.18.0.6 Namenode        | **TCP**: 9870, 9000             |
+| 172.18.0.4 Nodemanager     | **TCP**: *                      |
+| 172.18.0.2 Resourcemanager | **TCP**: 8088, 8030, 8031, 8032 |
+| 172.18.0.3 Historyserver   | **TCP**: 8188                   |
+| 172.18.0.5 Datanode        | **TCP**: *                      |
 
-```python
-print("Hello")
-```
 
-```bash
-cat ~/.bashrc
-```
+> Nguyen Anh - 20127438 Virtual Machine
+
+- `1` Master `35.198.220.25`
+    - [x] Running nodes
+        - NameNode
+        - SecondaryNameNode
+        - DataNode
+        - ResourceManager
+        - NodeManager
+    - [x] Ports 
+        - 9870
+        - 9000
+        - 8088
+        - 8030
+        - 8031
+        - 8032
+        - 8188
+        - 50000-50100
+        - 8030-8033
+        - 8040
+        - 8042
+
+- `4` Worker `34.101.47.69`, `34.101.233.75`, `34.128.115.73`, `34.101.208.65`
+    - [x] Running nodes
+        - DataNode
+        - NodeManager
+
+    - [x] Ports
+        - open all ports
+
+
+
 
 Screenshot example:
 
-![Proof of change your shell prompt's name](images/changeps1.png)
+![Proof of change your shell prompt's name](./images/04-node.png)
 
 \newpage
 
 Screenshot example:
 
-![ImgPlaceholder](images/placeholder-image-300x225.png)
+![ImgPlaceholder](images/04-Virtual.png)
 
 Reference examples:
 
