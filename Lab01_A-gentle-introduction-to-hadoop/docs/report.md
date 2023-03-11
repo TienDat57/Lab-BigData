@@ -16,13 +16,76 @@ code-block-font-size: \scriptsize
 # Lab 01: A Gentle Introduction to Hadoop
 
 ## Setting up Single-node Hadoop Cluster
+**Verify hadoop installation for each member of the group**
+
+### `20127011` **Le Tan Dat**
+
+### `20127458` **Dang Tien Dat** 
+![01-20127458](images/01-20127458.png)
+
+### `20127438` **Le Nguyen Nguyen Anh**
+![01-20127438](images/01-20127438.png)
+
+### `20127627` **Nguyen Quoc Thang**
+![01-20127627](images/01-20127627.png)
 
 ## Introduction to MapReduce
+**This a section we will answer the following questions:**
+1. **How do the input keys-values, the intermediate keys-values, and the output keys-values relate?**
+    **Answer**: In a MapReduce job, the input keys-value (represent the input data that needs to be processed) are processed by a map function to produce intermediate key-value pairs (the value represent the data that is associated with each key). These intermediate key-value pairs are then sorted by key and passed on to the reduce function, which groups the values associated with each intermediate key and produces the final output key-value pairs.
 
+2. **How does MapReduce deal with node failures?**
+    **Answer**: MapReduce handles the fault node in a fault tolerant manner. When a node fails during execution, the tasks running on the node are automatically rescheduled to run on other nodes in the cluster. There are 2 mechanisms in MapReduce to handle node errors including: Speculative Execution and Task Tracking as follow.
+    - **Speculative Execution**: MapReduce can launch duplicate copies of a task on different nodes to ensure that at least one copy of the task completes successfully. If one of the nodes fails or is slow to complete its task, the duplicate copy can take over and complete the work.
+    - **Task Tracking**: MapReduce tracks the progress of each task and can detect when a task is taking too long to complete. If a task is taking too long, MapReduce can launch a duplicate copy of the task on a different node. If the duplicate copy completes successfully, the original task is killed.
+
+3. **What is the meaning and implication of locality? What does it use?**
+    **Answer**: 
+    - **Meaning of locality**: Locality in Hadoop refers to the ability to process data on the same node or machine where the data is stored, in order to avoid data transmission between nodes in the network.
+    - **Implication of locality**: Locality is an important feature of Hadoop to optimize data processing performance by minimizing the time it takes to transmit data over the network.
+    - **Used for**: Locality is used in Hadoop to optimize data processing performance by ensuring that data processing tasks are performed on the same node where the data is stored. This helps to minimize the time it takes to transmit data over the network and improve data processing performance in Hadoop. 
+
+4. **Which problem is addressed by introducing a combiner function to the MapReduce model?**
+    **Answer**: The introduction of a combiner function to the MapReduce model addresses the problem of excessive data shuffling and network traffic during the Reduce phase. The combiner function is used to reduce the amount of data that needs to be transferred between the Map and Reduce tasks in a MapReduce job. The combiner function is executed on the output of the Map task on each node before the data is transferred to the Reduce task. The combiner function is optional and is only used if it reduces the amount of data that needs to be transferred between the Map and Reduce tasks. 
 
 ## Running a warm-up problem: Word Count
 
+- **Step 1**: 
+
+![03-step1](images/03-1.png)
+
+- **Step 2**:
+
+![03-step2](images/03-2.png)
+
+![03-step2-1](images/03-3.png)
+
+- **Step 3**:
+
+![03-step3](images/03-4.png)
+
+
 ## Bonus
+### Extended Word Count: Unhealthy relationships
+### Setting up Fully Distributed Mode
+#### Hadoop Cluster Setup in Non-Secure Mode
+
+**This section includes the machine id image of each machine**
+
+![Machine 20127438](images/04-20127438.png)
+
+![Machine 20127627](images/04-20127627.png)
+
+#### Research about Security in Hadoop Set-up
+This a section we will answer the following questions:
+
+1. **Is your Hadoop secured? Give a short explanation if your answer is yes. Otherwise, give some examples of risks to your system.**
+
+    **Answer**: Yes my Hadoop is secured. Because I have to use the password to access the Hadoop. If I don't use the password, I can't access the Hadoop. So, I think my Hadoop is secured.
+    
+2. **From your perspective, which method is better when securing your HDFS: authentication, authorization, or encryption? Give an explanation about your choices.**
+
+    **Answer**: I think the authentication is better than authorization and encryption. Because the authentication is the first step to access the Hadoop. If I don't have the authentication, I can't access the Hadoop. So, I think the authentication is better than authorization and encryption.
 
 Insert table example:
 

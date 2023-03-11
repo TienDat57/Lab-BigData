@@ -1,5 +1,12 @@
-A	pos
-B	eq
-C	neg
-D	pos
-E	neg
+cat	eq
+dog	eq
+dtdat	eq
+elephant	eq
+leopard	eq
+lion	eq
+lnnanh	eq
+ltdat	neg
+nqthang	pos
+rat	eq
+tiger	eq
+wolf	eq
