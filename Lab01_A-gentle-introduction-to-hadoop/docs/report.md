@@ -18,76 +18,91 @@ code-block-font-size: \scriptsize
 ## Setting up Single-node Hadoop Cluster
 **Verify hadoop installation for each member of the group**
 
-### `20127011` **Le Tan Dat**
+> `20127011` **Le Tan Dat**
+
 ![01-20127458](images/01-20127011.png)
 
-### `20127458` **Dang Tien Dat** 
+> `20127458` **Dang Tien Dat**
+
 ![01-20127458](images/01-20127458.png)
 
-### `20127438` **Le Nguyen Nguyen Anh**
+> `20127438` **Le Nguyen Nguyen Anh**
+
 ![01-20127438](images/01-20127438.png)
 
-### `20127627` **Nguyen Quoc Thang**
+> `20127627` **Nguyen Quoc Thang**
+
 ![01-20127627](images/01-20127627.png)
 
 ## Introduction to MapReduce
 **This a section we will answer the following questions:**
+
 1. **How do the input keys-values, the intermediate keys-values, and the output keys-values relate?**
+
     **Answer**: In a MapReduce job, the input keys-value (represent the input data that needs to be processed) are processed by a map function to produce intermediate key-value pairs (the value represent the data that is associated with each key). These intermediate key-value pairs are then sorted by key and passed on to the reduce function, which groups the values associated with each intermediate key and produces the final output key-value pairs.
 
 2. **How does MapReduce deal with node failures?**
+
     **Answer**: MapReduce handles the fault node in a fault tolerant manner. When a node fails during execution, the tasks running on the node are automatically rescheduled to run on other nodes in the cluster. There are 2 mechanisms in MapReduce to handle node errors including: Speculative Execution and Task Tracking as follow.
+
     - **Speculative Execution**: MapReduce can launch duplicate copies of a task on different nodes to ensure that at least one copy of the task completes successfully. If one of the nodes fails or is slow to complete its task, the duplicate copy can take over and complete the work.
+
     - **Task Tracking**: MapReduce tracks the progress of each task and can detect when a task is taking too long to complete. If a task is taking too long, MapReduce can launch a duplicate copy of the task on a different node. If the duplicate copy completes successfully, the original task is killed.
 
 3. **What is the meaning and implication of locality? What does it use?**
+
     **Answer**: 
+
     - **Meaning of locality**: Locality in Hadoop refers to the ability to process data on the same node or machine where the data is stored, in order to avoid data transmission between nodes in the network.
+
     - **Implication of locality**: Locality is an important feature of Hadoop to optimize data processing performance by minimizing the time it takes to transmit data over the network.
+
     - **Used for**: Locality is used in Hadoop to optimize data processing performance by ensuring that data processing tasks are performed on the same node where the data is stored. This helps to minimize the time it takes to transmit data over the network and improve data processing performance in Hadoop. 
 
 4. **Which problem is addressed by introducing a combiner function to the MapReduce model?**
+
     **Answer**: The introduction of a combiner function to the MapReduce model addresses the problem of excessive data shuffling and network traffic during the Reduce phase. The combiner function is used to reduce the amount of data that needs to be transferred between the Map and Reduce tasks in a MapReduce job. The combiner function is executed on the output of the Map task on each node before the data is transferred to the Reduce task. The combiner function is optional and is only used if it reduces the amount of data that needs to be transferred between the Map and Reduce tasks. 
 
 ## Running a warm-up problem: Word Count
 - **Step 1**: Create input1 file
 
-![03-step1](images/03-01.png)
+    - ![03-step1](images/03-01.png)
 
 - **Step 2**: Compile WordCount.java and create a jar
 
-![03-step1](images/03-02.png)
+    - ![03-step2](images/03-02.png)
 
 - **Step 3**: Run the application
 
-![03-step2](images/03-03.png)
+    - ![03-step3.1](images/03-03.png)
 
-![03-step2-1](images/03-04.png)
+    - ![03-step3.2](images/03-04.png)
 
 - **Step 4**: Output file
 
-![03-step3](images/03-05.png)
+    - ![03-step4](images/03-05.png)
 
 
 ## Bonus
 ### Extended Word Count: Unhealthy relationships
 **After create file `Unhealthy_relationships.java` and `input.txt`**
+
 - **File `input.txt`**:
 
-![04-input](images/04-input.png)
+    - ![04-input](images/04-input.png)
 
 - **After run `Unhealthy_relationships.java`**, we have the result:
 
-![04-output](images/04-output.png)
+    - ![04-output](images/04-output.png)
 
 ### Setting up Fully Distributed Mode
 #### Hadoop Cluster Setup in Non-Secure Mode
 
-**This section includes the machine id image of each machine:**
+- **This section includes the machine id image of each machine:**
 
-![Machine 20127438](images/04-20127438.png)
+    - ![Machine 20127438](images/04-20127438.png)
 
-![Machine 20127627](images/04-20127627.png)
+    - ![Machine 20127627](images/04-20127627.png)
 
 #### Research about Security in Hadoop Set-up
 This a section we will answer the following questions:
@@ -194,6 +209,7 @@ What is this? Yet _another_ citation?[^fn3]
 - Set up Hadoop Cluster 
     - https://www.linode.com/docs/guides/how-to-install-and-set-up-hadoop-cluster/
     - https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/ClusterSetup.html
+- Slide of course.
 
 <!-- References with citing, this will be display as footnotes -->
 [^fn1]: So Chris Krycho, "Not Exactly a Millennium," chriskrycho.com, July 2015, http://v4.chriskrycho.com/2015/not-exactly-a-millennium.html
