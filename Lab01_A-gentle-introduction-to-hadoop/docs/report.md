@@ -67,10 +67,19 @@ code-block-font-size: \scriptsize
 
 ## Bonus
 ### Extended Word Count: Unhealthy relationships
+**After create file `Unhealthy_relationships.java` and `input.txt`**
+- **File `input.txt`**:
+
+![04-input](images/04-input.png)
+
+- **After run `Unhealthy_relationships.java`**, we have the result:
+
+![04-output](images/04-output.png)
+
 ### Setting up Fully Distributed Mode
 #### Hadoop Cluster Setup in Non-Secure Mode
 
-**This section includes the machine id image of each machine**
+**This section includes the machine id image of each machine:**
 
 ![Machine 20127438](images/04-20127438.png)
 
@@ -81,11 +90,26 @@ This a section we will answer the following questions:
 
 1. **Is your Hadoop secured? Give a short explanation if your answer is yes. Otherwise, give some examples of risks to your system.**
 
-    **Answer**: Yes my Hadoop is secured. Because I have to use the password to access the Hadoop. If I don't use the password, I can't access the Hadoop. So, I think my Hadoop is secured.
+    **Answer**: Yes my Hadoop is secured. Because I have to use the password to access the Hadoop. If I don't use the password, I can't access the Hadoop. So, I think my Hadoop is secured.  Encryption protects the data stored in Hadoop by making it unreadable to anyone who does not have the decryption key.
+
+    Some examples of risks to a Hadoop system include:
+    - Unauthorized access: If a Hadoop system is not properly secured, it can be accessed by unauthorized users who can steal, modify, or delete data.
+
+    - Data breaches: Hadoop systems that store sensitive information such as financial or personal data are at risk of data breaches. If data is not properly secured, it can be stolen by attackers and used for malicious purposes.
+
+    - Malware and viruses: Hadoop systems can be vulnerable to malware and viruses that can infect the system and compromise its security.
+
+    - Insider threats: Insiders with access to Hadoop systems can intentionally or unintentionally cause harm to the system by stealing or modifying data, or by introducing malware or viruses.
     
 2. **From your perspective, which method is better when securing your HDFS: authentication, authorization, or encryption? Give an explanation about your choices.**
 
     **Answer**: I think the authentication is better than authorization and encryption. Because the authentication is the first step to access the Hadoop. If I don't have the authentication, I can't access the Hadoop. So, I think the authentication is better than authorization and encryption.
+    From my perspective, it is not possible to say that one method is better than the other when securing HDFS, as all three methods play important and complementary roles in overall Hadoop security.
+    Authentication is the process of verifying the identity of a user or application attempting to access the HDFS. Authentication ensures that only authorized users can access the system, and helps prevent unauthorized access and data breaches. Authorization ensures that users can only access the data and resources that they are authorized to use, and helps prevent unauthorized access and data breaches. Without proper authorization, users may be able to access data or resources that they should not have access to, leading to security vulnerabilities.
+
+    Encryption is the process of converting data into a format that is unreadable to unauthorized users. Encryption ensures that data is protected, even if it is accessed by unauthorized users. Encryption is especially important for sensitive data that needs to be protected at rest or in transit.
+
+    To secure HDFS, it is important to use all three methods - authentication, authorization, and encryption - in conjunction with each other. Proper authentication and authorization ensure that only authorized users can access data, while encryption ensures that the data is protected, even if it is accessed by unauthorized users.
 
 Insert table example:
 
@@ -133,6 +157,9 @@ What is this? Yet _another_ citation?[^fn3]
     - https://docs.cloudera.com/documentation/other/tutorial/CDH5/topics/ht_wordcount3.html
 - Book: MapReduce Design Patterns [Donald Miner, Adam Shook, 2012]
 - All of StackOverflow link related.
+- Set up Hadoop Cluster 
+    - https://www.linode.com/docs/guides/how-to-install-and-set-up-hadoop-cluster/
+    - https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/ClusterSetup.html
 
 <!-- References with citing, this will be display as footnotes -->
 [^fn1]: So Chris Krycho, "Not Exactly a Millennium," chriskrycho.com, July 2015, http://v4.chriskrycho.com/2015/not-exactly-a-millennium.html
