@@ -18,9 +18,7 @@ import org.apache.hadoop.mapred.TextOutputFormat;
 public class WeatherData {
    public static class MaxTemperatureMapper extends MapReduceBase implements Mapper<LongWritable, Text, Text, Text> {
       @Override
-      public void map(LongWritable arg0, Text Value,
-
-            OutputCollector<Text, Text> output, Reporter arg3)
+      public void map(LongWritable arg0, Text Value, OutputCollector<Text, Text> output, Reporter arg3)
             throws IOException {
          String line = Value.toString();
          // Example of Input
@@ -33,8 +31,11 @@ public class WeatherData {
          // 13 | M a p R e d u c e L a b P a g e
 
          String date = line.substring(6, 14);
+         // Get temperature max and min from the line and convert it to float type
          float temp_Max = Float.parseFloat(line.substring(39, 45).trim());
          float temp_Min = Float.parseFloat(line.substring(47, 53).trim());
+
+         // Check if the temperature is greater than 40 or less than 10
          if (temp_Max > 40.0) {
             // Hot day
             output.collect(new Text("Hot Day " + date),
@@ -56,8 +57,17 @@ public class WeatherData {
       public void reduce(Text Key, Iterator<Text> Values, OutputCollector<Text, Text> output, Reporter arg3)
             throws IOException {
          // Find Max temp yourself ?
-         String temperature = Values.next().toString();
-         output.collect(Key, new Text(temperature));
+         // String temperature = Values.next().toString();
+         // output.collect(Key, new Text(temperature));
+
+         float max = Float.parseFloat(Values.next().toString());
+         while (Values.hasNext()) {
+            float temp = Float.parseFloat(Values.next().toString());
+            if (temp > max) {
+               max = temp;
+            }
+         }
+         output.collect(Key, new Text(String.valueOf(max)));
       }
    }
 
@@ -66,10 +76,15 @@ public class WeatherData {
       conf.setJobName("temp");
       // Note:- As Mapper's output types are not default so we have to define the
       // following properties.
+
+      // map output key class and map output value class
       conf.setMapOutputKeyClass(Text.class);
       conf.setMapOutputValueClass(Text.class);
       conf.setMapperClass(MaxTemperatureMapper.class);
+
+      // Reducer's output types are not default so we have to define the following
       conf.setReducerClass(MaxTemperatureReducer.class);
+
       conf.setInputFormat(TextInputFormat.class);
       conf.setOutputFormat(TextOutputFormat.class);
       FileInputFormat.setInputPaths(conf, new Path(args[0]));
