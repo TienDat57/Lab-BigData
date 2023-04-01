@@ -19,12 +19,11 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.log4j.Logger;
 
 public class DeIdentifyData {
-   // static Logger=Logger.getLogger(DeIdentifyData.class.getName());
-   static Logger logger = Logger.getLogger(DeIdentifyData.class);
+   private static Logger logger = Logger.getLogger(DeIdentifyData.class);
    public static Integer[] encryptCol = { 2, 3, 4, 5, 6, 8 };
-   private static byte[] key1 = new String("samplekey1234567").getBytes();
+   private static byte[] samplekey = new String("samplekey1234567").getBytes();
 
-   public static class Map extends Mapper<Object, Text, NullWritable, Text> {
+   public static class DeIndentifyMap extends Mapper<Object, Text, NullWritable, Text> {
       public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
          // initialize the tokenizer with the input line and the delimiter "," 
          String[] tokens = value.toString().split(",");
@@ -33,27 +32,26 @@ public class DeIdentifyData {
          List<Integer> list = new ArrayList<Integer>();
          Collections.addAll(list, encryptCol);
 
-         String newStr = "";
+         String result = "";
          // iterate through the tokens and check if the index of the token is in the list of columns to encrypt 
          // if it is, encrypt the token and append it to the new string 
          // if it is not, append the token to the new string 
          for (int i = 0; i < tokens.length; i++) {
             if (list.contains(i + 1)) {
-               if (newStr.length() > 0)
-                  newStr += ",";
-               newStr += encrypt(tokens[i], key1);
+               if (result.length() > 0)
+                  result += ",";
+               result += encrypt(tokens[i], samplekey);
             } else {
-               if (newStr.length() > 0)
-                  newStr += ",";
-               newStr += tokens[i];
+               if (result.length() > 0)
+                  result += ",";
+               result += tokens[i];
             }
          }
 
          // after the loop, write the new string to the context 
-         context.write(NullWritable.get(), new Text(newStr.toString()));
+         context.write(NullWritable.get(), new Text(result.toString()));
       }
-   }
-
+   }	
 
    public static void main(String[] args) throws Exception {
       if (args.length != 2) {
@@ -64,7 +62,7 @@ public class DeIdentifyData {
       Job job = Job.getInstance(new Configuration());
       job.setOutputKeyClass(NullWritable.class);
       job.setOutputValueClass(Text.class);
-      job.setMapperClass(Map.class);
+      job.setMapperClass(DeIndentifyMap.class);
       job.setInputFormatClass(TextInputFormat.class);
       job.setOutputFormatClass(TextOutputFormat.class);
       FileInputFormat.setInputPaths(job, new Path(args[0]));
@@ -74,6 +72,7 @@ public class DeIdentifyData {
    }
 
    // method to encrypt the data 
+   // NOTE: Referenced from folder Lab 02 in drive of the course
    public static String encrypt(String strToEncrypt, byte[] key) {
       try {
          // use the AES algorithm to encrypt the data 
