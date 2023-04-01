@@ -1,4 +1,11 @@
-A B
-B C
-A C
-D E
+nqthang lnnanh
+lnnanh dtdat
+dtdat ltdat
+elephant lion
+lion tiger
+tiger leopard
+leopard dog
+dog wolf
+wolf cat
+cat rat
+rat elephant
