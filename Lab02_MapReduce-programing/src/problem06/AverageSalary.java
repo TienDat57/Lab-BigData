@@ -12,8 +12,8 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 public class AverageSalary {
 
-  public static class AverageSalaryMapper
-    extends Mapper<Object, Text, Text, FloatWritable> {
+  public static class AverageSalaryMapper 
+  extends Mapper<Object, Text, Text, FloatWritable> {
 
     public void map(Object key, Text value, Context context)
       throws IOException, InterruptedException {
