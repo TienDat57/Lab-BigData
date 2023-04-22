@@ -9,7 +9,7 @@
         A assignment for <code>CSC14118</code> Introduction to Big Data @ 20KHMT1
     </span>
 </div>
-
+u
 ## Collaborators (The girls)
 
 - `20127011` **Lê Tấn Đạt** ([@githubaccount1](https://github.com/callmetandat))
@@ -26,31 +26,14 @@
 <div style="page-break-after: always"></div>
 
 ## Quick run
->
-> You can clear this section and insert your own instruction.
+* Step 1: Go to the Google Colab notebook [here](https://drive.google.com/file/d/1uIa0SZbDfxSETD1Vd0jR5EeqMuIWEoA7/view?usp=sharing)
 
-To export your report with the [OSCP](https://help.offensive-security.com/hc/en-us/articles/360046787731-PEN-200-Reporting-Requirements) template, you should install the following packages:
-
-For Archlinux:
-
-```bash
-pacman -S texlive-most pandoc
-```
-
-For Ubuntu:
-
-```
-apt install texlive-latex-recommended texlive-fonts-extra texlive-latex-extra pandoc
-```
-
-Then using the `convert_md_to_pdf.sh` to export your report to pdf.
-
-> For those who don't want to use OSCP template, you can use alternative ways to export your `report.md` to `pdf` (`Typora`, `pandoc` without `Latex`, `Obsidian`,...) but please keep the `yaml` header of the report as follow:
-
+* Step 2: Click `Runtime` -> `Run all`
+  
 ```yaml
 ---
 title: "Lab 01: A Gentle Introduction to Hadoop"
-author: ["your-team-name"]
+author: "The Girls"
 date: "yyyy-mm-dd"
 subtitle: "CSC14118 Introduction to Big Data 20KHMT1"
 lang: "en"
